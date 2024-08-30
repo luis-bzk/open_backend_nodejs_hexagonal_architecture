@@ -41,5 +41,9 @@ Este proyecto utiliza PostgreSQL como motor de base de datos. Antes de comenzar,
 
 Si necesitas realizar pruebas locales, ejecuta el script de creación de la base de datos y el esquema correspondiente. Los scripts se encuentran en la carpeta `Database`, al mismo nivel que el directorio `src`.
 
+```bash
+docker-compose up
+```
+
 ## APIs
 _`Próximamente disponible la documentación de las APIs`_
