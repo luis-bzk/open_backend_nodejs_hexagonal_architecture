@@ -2,7 +2,6 @@ export * from './user.db';
 export * from './country.db';
 export * from './province.db';
 export * from './city.db';
-export * from './user_company.db';
 export * from './company.db';
 export * from './role.db';
 export * from './user_role.db';

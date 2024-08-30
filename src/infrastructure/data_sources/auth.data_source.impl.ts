@@ -299,17 +299,19 @@ export class AuthDataSourceImpl implements AuthDataSource {
 
     try {
       const userFound = await this.pool.query<UserDB>(
-        `select use.use_id,
-              use.use_name,
-              use.use_last_name,
-              use.use_email,
-              use.use_password,
-              use.use_token,
-              use.use_created_date,
-              use.use_record_status
-        from core.core_user use
-        join core.core_user_company uco on use.use_id = uco.id_user
-        where use.use_id = $1
+        `select
+          use.use_id,
+          use.use_name,
+          use.use_last_name,
+          use.use_email,
+          use.use_password,
+          use.use_token,
+          use.use_created_date,
+          use.use_record_status
+        from
+          core.core_user use
+        where
+          use.use_id = $1
           and use.use_record_status = $2;`,
         [id, '0'],
       );

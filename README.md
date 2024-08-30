@@ -39,7 +39,7 @@ Este proyecto utiliza PostgreSQL como motor de base de datos. Antes de comenzar,
 
 ### Creación de la Base de Datos
 
-Si necesitas realizar pruebas locales, ejecuta el script de creación de la base de datos y el esquema correspondiente. Los scripts se encuentran en la carpeta Database, al mismo nivel que el directorio src.
+Si necesitas realizar pruebas locales, ejecuta el script de creación de la base de datos y el esquema correspondiente. Los scripts se encuentran en la carpeta `Database`, al mismo nivel que el directorio `src`.
 
 ## APIs
 _`Próximamente disponible la documentación de las APIs`_

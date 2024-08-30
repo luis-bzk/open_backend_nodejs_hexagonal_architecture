@@ -5,20 +5,12 @@ export class UpdateUserDto {
   public name: string;
   public lastName: string;
   public email: string;
-  public id_company: number;
 
-  constructor(
-    id: number,
-    name: string,
-    lastName: string,
-    email: string,
-    id_company: number,
-  ) {
+  constructor(id: number, name: string, lastName: string, email: string) {
     this.id = id;
     this.name = name;
     this.lastName = lastName;
     this.email = email;
-    this.id_company = id_company;
   }
 
   static create(
@@ -26,7 +18,7 @@ export class UpdateUserDto {
     object: { [key: string]: any },
   ): [string?, UpdateUserDto?] {
     const { id } = params;
-    const { name, lastName, email, id_company } = object;
+    const { name, lastName, email } = object;
     const parsedId = parseInt(id, 10);
 
     if (!id) return ['El ID del usuario es necesario'];
@@ -46,12 +38,6 @@ export class UpdateUserDto {
     if (!Validators.email.test(email))
       return ['El email del usuario no es válido'];
 
-    if (!id_company) return ['El ID de la empresa es necesario'];
-    if (isNaN(id_company)) return ['El ID de la empresa no es válido'];
-
-    return [
-      undefined,
-      new UpdateUserDto(parsedId, name, lastName, email, id_company),
-    ];
+    return [undefined, new UpdateUserDto(parsedId, name, lastName, email)];
   }
 }

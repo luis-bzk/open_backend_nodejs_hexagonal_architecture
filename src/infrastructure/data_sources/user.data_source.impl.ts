@@ -10,11 +10,11 @@ import {
 import { User } from '../../domain/entities';
 import { PostgresDatabase } from '../../data';
 import { GeneratorValues } from '../../utils';
+import { UserDB } from '../../data/interfaces';
 import { CustomError } from '../../domain/errors';
 import { BcryptAdapter } from '../../config/bcrypt';
 import { UserMapper } from '../mappers/user.mapper';
 import { UserDataSource } from '../../domain/data_sources';
-import { UserCompanyDB, UserDB } from '../../data/interfaces';
 
 type HashFunction = (password: string) => string;
 
@@ -28,25 +28,26 @@ export class UserDataSourceImpl implements UserDataSource {
   }
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const { name, lastName, email, id_company } = createUserDto;
+    const { name, lastName, email } = createUserDto;
 
     try {
       // search user with same email
       const userEmail = await this.pool.query<UserDB>(
-        `select use.use_id,
-              use.use_name,
-              use.use_last_name,
-              use.use_email,
-              use.use_password,
-              use.use_token,
-              use.use_created_date,
-              use.use_record_status
-        from core.core_user use
-        join core.core_user_company uco on use.use_id = uco.id_user
-        where use.use_email = $1
-          and uco.id_company = $2
-          and use.use_record_status = $3;`,
-        [email.toLowerCase(), id_company, '0'],
+        `select
+          use.use_id,
+          use.use_name,
+          use.use_last_name,
+          use.use_email,
+          use.use_password,
+          use.use_token,
+          use.use_created_date,
+          use.use_record_status
+        from
+          core.core_user use
+        where
+          use.use_email = $1
+          and use.use_record_status = $2;`,
+        [email.toLowerCase(), '0'],
       );
       if (userEmail.rows.length > 0) {
         throw CustomError.conflict(
@@ -71,20 +72,6 @@ export class UserDataSourceImpl implements UserDataSource {
         ],
       );
 
-      // create user company
-      const userCompany = await this.pool.query<UserCompanyDB>(
-        `insert into core.core_user_company
-            (id_user, id_company)
-        values ($1, $2)
-        returning *;`,
-        [createdUser.rows[0].use_id, id_company],
-      );
-      if (userCompany.rows.length === 0) {
-        throw CustomError.conflict(
-          `No se ha podido asignar la empresa al usuario`,
-        );
-      }
-
       return UserMapper.entityFromObject(createdUser.rows[0]);
     } catch (error) {
       if (error instanceof CustomError) {
@@ -96,25 +83,26 @@ export class UserDataSourceImpl implements UserDataSource {
   }
 
   async update(updateUserDto: UpdateUserDto): Promise<User> {
-    const { id, email, name, lastName, id_company } = updateUserDto;
+    const { id, email, name, lastName } = updateUserDto;
 
     try {
       // search user registered
       const userFound = await this.pool.query<UserDB>(
-        `select use.use_id,
-              use.use_name,
-              use.use_last_name,
-              use.use_email,
-              use.use_password,
-              use.use_token,
-              use.use_created_date,
-              use.use_record_status
-        from core.core_user use
-        join core.core_user_company uco on use.use_id = uco.id_user
-        where use.use_id = $1
-          and uco.id_company = $2
-          and use.use_record_status = $3;`,
-        [id, id_company, '0'],
+        `select
+          use.use_id,
+          use.use_name,
+          use.use_last_name,
+          use.use_email,
+          use.use_password,
+          use.use_token,
+          use.use_created_date,
+          use.use_record_status
+        from
+          core.core_user use
+        where
+          use.use_id = $1
+          and use.use_record_status = $2;`,
+        [id, '0'],
       );
       if (userFound.rows.length === 0) {
         throw CustomError.notFound(
@@ -124,17 +112,19 @@ export class UserDataSourceImpl implements UserDataSource {
 
       // user with email
       const userWithEmail = await this.pool.query<UserDB>(
-        `select use.use_id,
-              use.use_name,
-              use.use_last_name,
-              use.use_email,
-              use.use_password,
-              use.use_token,
-              use.use_created_date,
-              use.use_record_status
-        from core.core_user use
-        join core.core_user_company uco on use.use_id = uco.id_user
-        where use.use_email = $1
+        `select
+          use.use_id,
+          use.use_name,
+          use.use_last_name,
+          use.use_email,
+          use.use_password,
+          use.use_token,
+          use.use_created_date,
+          use.use_record_status
+        from
+          core.core_user use
+        where
+          use.use_email = $1
           and use.use_id <> $2
           and use.use_record_status = $3;`,
         [email, id, '0'],
@@ -168,24 +158,25 @@ export class UserDataSourceImpl implements UserDataSource {
   }
 
   async get(getUserDto: GetUserDto): Promise<User> {
-    const { id, id_company } = getUserDto;
+    const { id } = getUserDto;
 
     try {
       const userFound = await this.pool.query<UserDB>(
-        `select use.use_id,
-              use.use_name,
-              use.use_last_name,
-              use.use_email,
-              use.use_password,
-              use.use_token,
-              use.use_created_date,
-              use.use_record_status
-        from core.core_user use
-        join core.core_user_company uco on use.use_id = uco.id_user
-        where use.use_id = $1
-          and uco.id_company = $2
-          and use.use_record_status = $3;`,
-        [id, id_company, '0'],
+        `select
+          use.use_id,
+          use.use_name,
+          use.use_last_name,
+          use.use_email,
+          use.use_password,
+          use.use_token,
+          use.use_created_date,
+          use.use_record_status
+        from
+          core.core_user use
+        where
+          use.use_id = $1
+          and use.use_record_status = $2;`,
+        [id, '0'],
       );
       if (userFound.rows.length === 0) {
         throw CustomError.notFound(`No se ha encontrado el usuario solicitado`);
@@ -202,25 +193,27 @@ export class UserDataSourceImpl implements UserDataSource {
   }
 
   async getAll(getAllUsersDto: GetAllUsersDto): Promise<User[]> {
-    const { id_company, limit, offset } = getAllUsersDto;
+    const { limit, offset } = getAllUsersDto;
 
     try {
       const users = await this.pool.query<UserDB>(
-        `select use.use_id,
-              use.use_name,
-              use.use_last_name,
-              use.use_email,
-              use.use_password,
-              use.use_token,
-              use.use_created_date,
-              use.use_record_status
-        from core.core_user use
-        join core.core_user_company uco on use.use_id = uco.id_user
-        where uco.id_company = $1
-        and use.use_record_status = $2
-        order by use.use_id desc
-        limit $3 offset $4;`,
-        [id_company, '0', limit, offset],
+        `select
+          use.use_id,
+          use.use_name,
+          use.use_last_name,
+          use.use_email,
+          use.use_password,
+          use.use_token,
+          use.use_created_date,
+          use.use_record_status
+        from
+          core.core_user use
+        where
+          use.use_record_status = $1
+        order by
+          use.use_id desc
+        limit $2 offset $3;`,
+        ['0', limit, offset],
       );
 
       return UserMapper.entitiesFromArray(users.rows);
@@ -234,59 +227,36 @@ export class UserDataSourceImpl implements UserDataSource {
   }
 
   async delete(deleteUserDto: DeleteUserDto): Promise<User> {
-    const { id, id_company } = deleteUserDto;
+    const { id } = deleteUserDto;
 
     try {
       // search user
       const userFound = await this.pool.query<UserDB>(
-        `select use.use_id,
-              use.use_name,
-              use.use_last_name,
-              use.use_email,
-              use.use_password,
-              use.use_token,
-              use.use_created_date,
-              use.use_record_status
-        from core.core_user use
-        join core.core_user_company uco on use.use_id = uco.id_user
-        where use.use_id = $1
-          and uco.id_company = $2
-          and use.use_record_status = $3;`,
-        [id, id_company, '0'],
+        `select
+          use.use_id,
+          use.use_name,
+          use.use_last_name,
+          use.use_email,
+          use.use_password,
+          use.use_token,
+          use.use_created_date,
+          use.use_record_status
+        from
+          core.core_user use
+        where
+          use.use_id = $1
+          and use.use_record_status = $2;`,
+        [id, '0'],
       );
       if (userFound.rows.length === 0) {
         throw CustomError.notFound(`No se ha encontrado el usuario a eliminar`);
       }
 
-      // Buscar si el usuario tiene mas de una empresa
-      const companiesUser = await this.pool.query(
-        `select uco_id, id_user, id_company
-        from core.core_user_company
-        where id_user = $1
-          and id_company <> $2;`,
-        [id, id_company],
-      );
-      if (companiesUser.rows.length > 1) {
-        throw CustomError.conflict(
-          'El usuario no se puede eliminar, está atado a otra empresa más',
-        );
-      }
-
-      // delete user company
-      await this.pool.query<UserCompanyDB>(
-        `delete
-        from core.core_user_company
-        where id_user = $1
-          and id_company = $2
-        returning *;`,
-        [id, id_company],
-      );
-
       // delete user
       const deleted = await this.pool.query<UserDB>(
         `delete
         from core.core_user
-        where use_id = :$1
+        where use_id = $1
         returning *;`,
         [id],
       );

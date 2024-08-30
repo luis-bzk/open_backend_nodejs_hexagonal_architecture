@@ -74,10 +74,7 @@ export class UserController {
   };
 
   getAllUsers = (req: Request, res: Response) => {
-    const [error, getAllUsersDto] = GetAllUsersDto.create(
-      req.params,
-      req.query,
-    );
+    const [error, getAllUsersDto] = GetAllUsersDto.create(req.query);
     if (error) return res.status(400).json({ error });
 
     new GetAllUsers(this.userRepository)

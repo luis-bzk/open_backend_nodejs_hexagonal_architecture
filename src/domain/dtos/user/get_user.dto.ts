@@ -1,10 +1,8 @@
 export class GetUserDto {
   public id: number;
-  public id_company: number;
 
-  constructor(id: number, id_company: number) {
+  constructor(id: number) {
     this.id = id;
-    this.id_company = id_company;
   }
 
   static create(params: { [key: string]: string }): [string?, GetUserDto?] {
@@ -18,6 +16,6 @@ export class GetUserDto {
     if (!id_company) ['El ID de la empresa es requerido'];
     if (isNaN(parsedIdCompany)) ['El ID de la empresa no es valido'];
 
-    return [undefined, new GetUserDto(parsedId, parsedIdCompany)];
+    return [undefined, new GetUserDto(parsedId)];
   }
 }
