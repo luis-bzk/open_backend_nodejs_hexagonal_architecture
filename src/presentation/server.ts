@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import helmet from 'helmet';
 import cors from 'cors';
 
 import { envs } from '../config';
@@ -20,6 +21,8 @@ export class Server {
   }
 
   public async start() {
+    this.app.use(helmet());
+
     //   middleware
     this.app.use(express.json());
 
