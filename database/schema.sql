@@ -1,6 +1,4 @@
-create database synergy_control;
-
-\ c synergy_control;
+-- create database my_database;
 
 create schema core;
 
