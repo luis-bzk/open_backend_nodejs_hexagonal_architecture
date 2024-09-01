@@ -121,7 +121,7 @@ export class PhoneTypeDataSourceImpl implements PhoneTypeDataSource {
           core.core_phone_type
         set
           pty_name = $1,
-          pty_description = $2,
+          pty_description = $2
         where
           pty_id = $3
         returning *;`,

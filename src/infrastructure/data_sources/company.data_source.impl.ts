@@ -148,7 +148,7 @@ export class CompanyDataSourceImpl implements CompanyDataSource {
           com_vision = $3,
           com_mission = $4,
           com_email = $5,
-          com_phone = $6,
+          com_phone = $6
         where
           com_id = $7
         returning *; `,
@@ -160,6 +160,8 @@ export class CompanyDataSourceImpl implements CompanyDataSource {
       if (error instanceof CustomError) {
         throw error;
       }
+
+      console.log(error);
 
       throw CustomError.internalServer('Error en el Data Source al actualizar');
     }
