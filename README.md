@@ -12,14 +12,17 @@
 - [APIs](#apis)
   - [Company](#company)
       - [Parameters](#parameters)
+      - [Body](#body)
       - [Responses](#responses)
       - [Parameters](#parameters-1)
+      - [Body](#body-1)
       - [Responses](#responses-1)
       - [Parameters](#parameters-2)
       - [Responses](#responses-2)
+      - [Parameters](#parameters-3)
       - [Query](#query)
       - [Responses](#responses-3)
-      - [Parameters](#parameters-3)
+      - [Parameters](#parameters-4)
       - [Responses](#responses-4)
 
 ## Introducción
@@ -69,6 +72,21 @@ docker-compose up
 
 > None
 
+##### Body
+
+```ts
+{
+  social_reason: string,
+  description: string,
+  vision: string,
+  mission: string,
+  email: string,
+  phone: string,
+}
+```
+
+> None
+
 ##### Responses
 
 > | http code | content-type       | response                                                                                                                                                               |
@@ -82,14 +100,27 @@ docker-compose up
 
 ##### Parameters
 
-> | name              | type     | data type    | description                  |
-> | ----------------- | -------- | ------------ | ---------------------------- |
-> | `id`              | required | int          | ID de la empresa             |
+> | name | type     | data type | description      |
+> | ---- | -------- | --------- | ---------------- |
+> | `id` | required | int       | ID de la empresa |
+
+##### Body
+
+```ts
+{
+  social_reason: string,
+  description: string,
+  vision: string,
+  mission: string,
+  email: string,
+  phone: string,
+}
+```
 
 ##### Responses
 
-> | http code | content-type       | response                                                                                                                                                               |
-> | --------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> | http code | content-type       | response                                                                                                                                                              |
+> | --------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 > | `200`     | `application/json` | `{id: number; social_reason: string; description: string; vision: string; mission: string; email: string; phone: string; created_date: Date; record_status: string;}` |
 
 </details>
@@ -99,14 +130,14 @@ docker-compose up
 
 ##### Parameters
 
-> | name              | type     | data type    | description                  |
-> | ----------------- | -------- | ------------ | ---------------------------- |
-> | `id`              | required | int          | ID de la empresa             |
+> | name | type     | data type | description      |
+> | ---- | -------- | --------- | ---------------- |
+> | `id` | required | int       | ID de la empresa |
 
 ##### Responses
 
-> | http code | content-type       | response                                                                                                                                                               |
-> | --------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> | http code | content-type       | response                                                                                                                                                              |
+> | --------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 > | `200`     | `application/json` | `{id: number; social_reason: string; description: string; vision: string; mission: string; email: string; phone: string; created_date: Date; record_status: string;}` |
 
 </details>
@@ -114,17 +145,21 @@ docker-compose up
 <details>
  <summary><code>GET</code> <code><b>/api/v1/company/get-all</b></code> <code>(Obtener todas las empresa)</code></summary>
 
+##### Parameters
+
+> None
+
 ##### Query
 
-> | name              | type         | data type    | description                  |
-> | ----------------- | ------------ | ------------ | ---------------------------- |
-> | `limit`           | not required | int          | limite de registros          |
-> | `offset`          | not required | int          | registros a excluir          |
+> | name     | type         | data type | description         |
+> | -------- | ------------ | --------- | ------------------- |
+> | `limit`  | not required | int       | limite de registros |
+> | `offset` | not required | int       | registros a excluir |
 
 ##### Responses
 
-> | http code | content-type       | response                                                                                                                                                               |
-> | --------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> | http code | content-type       | response                                                                                                                                                                  |
+> | --------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 > | `200`     | `application/json` | `[ {id: number; social_reason: string; description: string; vision: string; mission: string; email: string; phone: string; created_date: Date; record_status: string;} ]` |
 
 </details>
@@ -134,14 +169,14 @@ docker-compose up
 
 ##### Parameters
 
-> | name              | type     | data type    | description                  |
-> | ----------------- | -------- | ------------ | ---------------------------- |
-> | `id`              | required | int          | ID de la empresa             |
+> | name | type     | data type | description      |
+> | ---- | -------- | --------- | ---------------- |
+> | `id` | required | int       | ID de la empresa |
 
 ##### Responses
 
-> | http code | content-type       | response                                                                                                                                                               |
-> | --------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> | http code | content-type       | response                                                                                                                                                              |
+> | --------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 > | `200`     | `application/json` | `{id: number; social_reason: string; description: string; vision: string; mission: string; email: string; phone: string; created_date: Date; record_status: string;}` |
 
 </details>
