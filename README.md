@@ -35,6 +35,7 @@ Este proyecto proporciona una base sólida para la creación de sistemas backend
 - Express JS
 - Typescript
 - PostgreSQL
+- Docker
 
 ## Instalación
 
@@ -51,14 +52,14 @@ Cambia el nombre del archivo **env.template** a **env** y ajusta las variables d
 
 ## Conexión a la Base de Datos.
 
-Este proyecto utiliza PostgreSQL como motor de base de datos. Antes de comenzar, es necesario crear la base de datos.
+Este proyecto utiliza PostgreSQL como motor de base de datos. Antes de comenzar, es necesario crear la base de datos, y para ello preferiblemente se recomienda instalar Docker dentro de su ecosistema de desarrollo.
 
 ### Creación de la Base de Datos
 
-Si necesitas realizar pruebas locales, ejecuta el script de creación de la base de datos y el esquema correspondiente. Los scripts se encuentran en la carpeta `Database`, al mismo nivel que el directorio `src`.
+Si necesitas realizar pruebas locales, ejecute el script de creación de la base de datos, el cual crea y llena la Base de Datos en Docker con data inicial. El archivo `docker-compose-yml` se encuentra dentro del directorio `Database`, al mismo nivel que el directorio `src`, y se debe ejecutar desde esta ruta el siguiente comando:
 
 ```bash
-docker-compose up
+docker-compose up -d
 ```
 
 ## APIs
