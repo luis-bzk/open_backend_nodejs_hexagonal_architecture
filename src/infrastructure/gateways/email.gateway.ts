@@ -122,16 +122,12 @@ export class EmailGateway {
             </a>
 
             <p class="mini_content">
-              SynergyControl es mucho más que un simple sistema; es la solución definitiva para facilitar y optimizar todas
-              las operaciones de tu empresa. Con una interfaz intuitiva y poderosas capacidades, nuestra plataforma te permite
-              crear productos, gestionar inventarios, realizar ventas, fidelizar clientes, administrar empleados, crear
-              tareas, controlar datos, generar informes, gestionar facturación y mucho más, todo en un solo lugar.
+              Mensaje de contenido
             </p>
 
             <div class="footer">
               <p class="alert_message">Si no creaste esta cuenta, por favor ignora este correo electrónico.</p>
               <p class="alert_message">Este es un servicio de notificación por correo.</p>
-              <p class="alert_message">&copy; 2024 InnovaBox Solutions. Todos los derechos reservados</p>
             </div>
           </div>
         </body>
@@ -267,7 +263,7 @@ export class EmailGateway {
 
             <div class="content_mail">
               <p>Hola ${name} ${lastName}</p>
-              <p>Te han agregado como colaborador en el sistema SynergyControl, confirma tu cuenta y accede a tu empresa</p>
+              <p>Te han agregado como colaborador en el sistema ${envs.SYSTEM_NAME}, confirma tu cuenta y accede inmediatamente</p>
               <br />
               <p>
                 Hemos generado una contraseña temporal para tu acceso. Te pedimos que no la compartas con nadie y que la
@@ -284,16 +280,12 @@ export class EmailGateway {
             </a>
 
             <p class="mini_content">
-              SynergyControl es mucho más que un simple sistema, es la solución definitiva para facilitar y optimizar todas
-              las operaciones empresariales. Con una interfaz intuitiva y poderosas capacidades, nuestra plataforma te permite
-              crear productos, gestionar inventarios, realizar ventas, fidelizar clientes, administrar empleados, crear
-              tareas, controlar datos, generar informes, gestionar facturación y mucho más, todo en un solo lugar.
+              Mensaje de contenido
             </p>
 
             <div class="footer">
               <p class="alert_message">Si no creaste esta cuenta, por favor ignora este correo electrónico.</p>
               <p class="alert_message">Este es un servicio de notificación por correo.</p>
-              <p class="alert_message">&copy; 2024 InnovaBox Solutions. Todos los derechos reservados</p>
             </div>
           </div>
         </body>
@@ -416,7 +408,7 @@ export class EmailGateway {
               <p>Vamos a recuperar el acceso a tu cuenta</p>
               <br />
               <p>
-                Nos has solicitado recuperar el acceso a SynergyControl. No te preocupes, es muy común. Para crear una nueva
+                Nos has solicitado recuperar el acceso a ${envs.SYSTEM_NAME}. No te preocupes, es muy común. Para crear una nueva
                 contraseña, haz clic en el siguiente enlace:
               </p>
             </div>
@@ -426,10 +418,7 @@ export class EmailGateway {
             </a>
 
             <p class="mini_content">
-              SynergyControl es mucho más que un simple sistema, es la solución definitiva para facilitar y optimizar todas
-              las operaciones empresariales. Con una interfaz intuitiva y poderosas capacidades, nuestra plataforma te permite
-              crear productos, gestionar inventarios, realizar ventas, fidelizar clientes, administrar empleados, crear
-              tareas, controlar datos, generar informes, gestionar facturación y mucho más, todo en un solo lugar.
+              Mensaje de contenido
             </p>
 
             <div class="footer">
@@ -437,7 +426,6 @@ export class EmailGateway {
                 Si no solicitaste este cambio de contraseña, por favor ignora este correo electrónico.
               </p>
               <p class="alert_message">Este es un servicio de notificación por correo.</p>
-              <p class="alert_message">&copy; 2024 InnovaBox Solutions. Todos los derechos reservados</p>
             </div>
           </div>
         </body>
