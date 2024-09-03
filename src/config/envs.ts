@@ -6,6 +6,7 @@ export const envs = {
   JWT_SEED: get('JWT_SEED').required().asString(),
 
   FRONTEND_URL: get('FRONTEND_URL').required().asString(),
+  SYSTEM_NAME: get('SYSTEM_NAME').required().asString(),
 
   DB_USER: get('DB_USER').required().asString(),
   DB_HOST: get('DB_HOST').required().asString(),

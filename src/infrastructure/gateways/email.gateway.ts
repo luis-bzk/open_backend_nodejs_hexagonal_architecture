@@ -25,9 +25,9 @@ export class EmailGateway {
     });
 
     await transport.sendMail({
-      from: 'Synergy control <gsgroup@gmail.com>',
+      from: `${envs.SYSTEM_NAME} <gsgroup@gmail.com>`,
       to: email,
-      subject: 'Synergy Control - Confirma tu cuenta',
+      subject: `${envs.SYSTEM_NAME} - Confirma tu cuenta`,
       text: 'Valida tu dirección email para acceder a tu cuenta por completo',
       html: `
       <!DOCTYPE html>
@@ -35,7 +35,7 @@ export class EmailGateway {
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Synergy control - Confirma tu cuenta</title>
+          <title>${envs.SYSTEM_NAME} - Confirma tu cuenta</title>
           <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
           </style>
@@ -110,7 +110,7 @@ export class EmailGateway {
         </head>
         <body>
           <div class="container">
-            <h1>Te damos la bienvenida a Synergy Control 👋</h1>
+            <h1>Te damos la bienvenida a ${envs.SYSTEM_NAME} 👋</h1>
 
             <div class="content_mail">
               <p>Hola ${name} ${lastName}</p>
@@ -163,9 +163,9 @@ export class EmailGateway {
     });
 
     await transport.sendMail({
-      from: 'Synergy control <gsgroup@gmail.com>',
+      from: `${envs.SYSTEM_NAME} <gsgroup@gmail.com>`,
       to: email,
-      subject: 'Synergy Control - Confirma tu cuenta',
+      subject: `${envs.SYSTEM_NAME} - Confirma tu cuenta`,
       text: 'Valida tu dirección email para acceder a tu cuenta por completo',
       html: `
       <!DOCTYPE html>
@@ -173,7 +173,7 @@ export class EmailGateway {
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Synergy control - Confirma tu cuenta</title>
+          <title>${envs.SYSTEM_NAME} - Confirma tu cuenta</title>
           <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
           </style>
@@ -263,7 +263,7 @@ export class EmailGateway {
         </head>
         <body>
           <div class="container">
-            <h1>Te damos la bienvenida a Synergy Control 👋</h1>
+            <h1>Te damos la bienvenida a ${envs.SYSTEM_NAME} 👋</h1>
 
             <div class="content_mail">
               <p>Hola ${name} ${lastName}</p>
@@ -325,9 +325,9 @@ export class EmailGateway {
     });
 
     await transport.sendMail({
-      from: 'Synergy control <gsgroup@gmail.com>',
+      from: `${envs.SYSTEM_NAME} <gsgroup@gmail.com>`,
       to: email,
-      subject: 'Synergy control - Recuperar mi cuenta',
+      subject: `${envs.SYSTEM_NAME} - Recuperar mi cuenta`,
       text: 'Recupera el acceso a tu cuenta',
       html: `
       <!DOCTYPE html>
@@ -335,7 +335,7 @@ export class EmailGateway {
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Synergy control - Confirma tu cuenta</title>
+          <title>${envs.SYSTEM_NAME} - Confirma tu cuenta</title>
           <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
           </style>
